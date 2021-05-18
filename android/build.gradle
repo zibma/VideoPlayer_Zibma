@@ -1,4 +1,3 @@
-group 'com.artxdev.newpipeextractor_dart'
 version '1.0'
 
 buildscript {
