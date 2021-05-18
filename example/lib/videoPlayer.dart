@@ -646,39 +646,57 @@ class StreamManifestPlayerState extends State<StreamManifestPlayer> {
               gradient: LinearGradient(
                   colors: [Colors.transparent, Colors.black.withOpacity(0.3)])),
         ),
-        ListView.builder(
-            physics: BouncingScrollPhysics(),
-            padding: EdgeInsets.only(top: 40),
-            itemCount: qualities.length,
-            itemBuilder: (context, index) {
-              String quality = qualities[index];
-              return GestureDetector(
-                onTap: () {
-                  int index = widget.streams.indexWhere((element) =>
-                      element.formatSuffix + " • " + element.resolution ==
-                      quality);
-                  _controller!.changeVideoUrl(widget.streams[index].url);
-                  widget.onQualityChanged!(quality.split("p").first);
-                  setState(() => currentQuality = quality);
-                  setState(() => showStreamQualityMenu = false);
-                  showControlsHandler();
-                },
-                child: Container(
-                  color: Colors.transparent,
-                  padding: EdgeInsets.all(12),
-                  child: Text(
-                    "${quality.split("•").last.trim().split("p").first + "p"}"
-                    "${quality.split("p").last.contains("60") ? " • 60 FPS" : ""}",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontFamily: 'Product Sans',
-                        fontSize: 22,
-                        fontWeight: FontWeight.w700),
-                  ),
-                ),
-              );
-            }),
+        Center(
+          child: Container(
+            width: 180,
+            child: ListView.builder(
+                physics: BouncingScrollPhysics(),
+                padding: EdgeInsets.only(top: 40),
+                itemCount: qualities.length,
+                itemBuilder: (context, index) {
+                  String quality = qualities[index];
+                  return GestureDetector(
+                    onTap: () {
+                      int index = widget.streams.indexWhere((element) =>
+                          element.formatSuffix + " • " + element.resolution ==
+                          quality);
+                      _controller!.changeVideoUrl(widget.streams[index].url);
+                      widget.onQualityChanged!(quality.split("p").first);
+                      setState(() => currentQuality = quality);
+                      setState(() => showStreamQualityMenu = false);
+                      showControlsHandler();
+                    },
+                    child: Container(
+                      color: Colors.transparent,
+                      padding: EdgeInsets.all(12),
+                      child: Container(
+                        height: 40,
+                         decoration: new BoxDecoration(
+                            color: Colors.white30,
+                            borderRadius: new BorderRadius.only(
+                              bottomLeft: const Radius.circular(30.0),
+                              bottomRight: const Radius.circular(30.0),
+                              topLeft: const Radius.circular(30.0),
+                              topRight: const Radius.circular(30.0),
+                            )),
+                        child: Center(
+                          child: Text(
+                            "${quality.split("•").last.trim().split("p").first + "p"}"
+                            "${quality.split("p").last.contains("60") ? " • 60 FPS" : ""}",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontFamily: 'Product Sans',
+                                fontSize: 22,
+                                fontWeight: FontWeight.w700),
+                          ),
+                        ),
+                      ),
+                    ),
+                  );
+                }),
+          ),
+        ),
         Align(
           alignment: Alignment.topLeft,
           child: IconButton(
