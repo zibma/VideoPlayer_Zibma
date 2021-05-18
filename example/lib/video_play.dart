@@ -45,7 +45,7 @@ class _VideoPlayState extends State<VideoPlay> {
         debugPrint('initialize QualityChanged -> ${quality}');
         videoQuality = quality;
       },
-      onBackArrow: (){
+      onBackArrow: () {
         Navigator.pop(context);
       },
       videoTitle: currentVideo?.name ?? "",
