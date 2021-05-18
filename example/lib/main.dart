@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:newpipeextractor_dart/extractors/videos.dart';
 import 'package:newpipeextractor_dart/newpipeextractor_dart.dart';
-  import 'package:newpipeextractor_dart_example/video_play.dart';
+import 'package:newpipeextractor_dart_example/video_play.dart';
 
 void main() {
   runApp(MyApp());
